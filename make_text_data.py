@@ -7,7 +7,7 @@ import pandas as pd
 import datetime
 import random
 import numpy as np
-from tqdm import tqdm_notebook
+from tqdm import tqdm
 import os
 import shutil
 import pandas as pd
@@ -63,6 +63,9 @@ lookahead = args.num_lookahead
 
 if os.path.exists("tweet_data_embed") == False:
     os.mkdir("tweet_data_embed")
+    os.mkdir("tweet_data_embed/train")
+    os.mkdir("tweet_data_embed/val")
+    os.mkdir("tweet_data_embed/test")
 
 with open(f"{split}_data_price_only_lookback_{lookback}_lookahead_{lookahead}_stride_{stride}.pkl", "rb") as f:
     data = pkl.load(f)
@@ -99,7 +102,7 @@ c3 = []
 sss= 0
 
 
-for idx in tqdm_notebook(len(data)):
+for idx in tqdm(range(len(data))):
     sample = data[idx]
     coin = sample["coin_name"]
     date_list = sample["lookback_dates"]

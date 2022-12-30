@@ -1,0 +1,4 @@
+*_data/
+price_only/
+*.pkl
+tweet_data_embed/
